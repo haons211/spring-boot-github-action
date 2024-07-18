@@ -1,0 +1,25 @@
+name : Deploy to Staging
+
+on:
+  push:
+    branches: main
+
+jobs:
+  day3deplay:
+    runs-on: ubuntu-latest
+
+    env:
+      JAVA_VERSION: 17
+      JAVA_DISTRIBUTION: temurin
+     
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: setup Java
+        uses: actions/checkout@v3
+        with:
+          java-version: ${{ env.JAVA_DISTRIBUTION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+      - name: Build with Maven
+        run: mvn clean install
